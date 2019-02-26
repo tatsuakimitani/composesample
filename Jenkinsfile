@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build and start test image') {
       steps {
-        sh '''docker-composer build
+        sh '''docker-compose build
 docker-compose up -d
 docker run --rm \\
     -v \'${env.WORKSPACE}\':\'/project\':ro \\
