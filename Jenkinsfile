@@ -4,15 +4,15 @@ pipeline {
     stage('Build and start test image') {
       steps {
         sh '''docker-compose build
-docker-compose up -d
-docker run --rm \\
-    -v \'${env.WORKSPACE}\':\'/project\':ro \\
-    -v /var/run/docker.sock:/var/run/docker.sock:ro \\
-    -e TIMEOUT=30 \\
-    -e COMPOSE_PROJECT_NAME=\\$(basename \\"\'${env.WORKSPACE}\'\\") \\
-    softonic/compose-project-is-up
 
 '''
+        sh 'docker-compose up -d'
+        sh '''docker run --rm \\\\
+    -v \\\'${env.WORKSPACE}\\\':\\\'/project\\\':ro \\\\
+    -v /var/run/docker.sock:/var/run/docker.sock:ro \\\\
+    -e TIMEOUT=30 \\\\
+    -e COMPOSE_PROJECT_NAME=\\\\$(basename \\\\"\\\'${env.WORKSPACE}\\\'\\\\") \\\\
+    softonic/compose-project-is-up'''
       }
     }
     stage('Run tests') {
