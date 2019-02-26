@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'swarm-ci'
-    }
-
-  }
+  agent any
   stages {
     stage('Build and start test image') {
       steps {
@@ -26,7 +21,7 @@ docker run --rm \\
 '''
       }
     }
-    stage('') {
+    stage('error') {
       steps {
         echo 'finished!'
       }
